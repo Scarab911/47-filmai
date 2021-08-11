@@ -10,7 +10,14 @@ class Cinema {
     }
     addMovie(movieName, moviePrice, ticketPrice) {
 
-        this.movieList.push({ movieName, moviePrice, ticketPrice, ticketsSold: 0, available: true, profit: 0 });
+        this.movieList.push({
+            movieName,
+            moviePrice,
+            ticketPrice,
+            ticketsSold: 0,
+            available: true,
+            profit: 0
+        });
 
         console.log(`You can watch "${movieName}" movie for ${ticketPrice} ${this.currency}, now!`);
     }
@@ -37,16 +44,15 @@ class Cinema {
         let movieInfo = [];
         let index = 0;
 
-
         for (let i = 0; i < this.movieList.length; i++) {
 
-            const movie = this.movieList[i];
+            const { movieName, moviePrice, profit } = this.movieList[i];
 
             if (i > 0) {
-                movieInfo.push(`---------------\n${++index}. "${movie.movieName}":\n    paid: ${movie.moviePrice} ${this.currency};\n    profit: ${movie.profit} ${this.currency};\n    net profit: ${movie.profit - movie.moviePrice} ${this.currency};`)
+                movieInfo.push(`---------------\n${++index}. "${movieName}":\n    paid: ${moviePrice} ${this.currency};\n    profit: ${profit} ${this.currency};\n    net profit: ${profit - moviePrice} ${this.currency};`)
 
             } else {
-                movieInfo.push(`${++index}. "${movie.movieName}":\n    paid: ${movie.moviePrice} ${this.currency};\n    profit: ${movie.profit} ${this.currency};\n    net profit: ${movie.profit - movie.moviePrice} ${this.currency};`)
+                movieInfo.push(`${++index}. "${movieName}":\n    paid: ${moviePrice} ${this.currency};\n    profit: ${profit} ${this.currency};\n    net profit: ${profit - moviePrice} ${this.currency};`)
             }
         }
 
@@ -58,35 +64,20 @@ class Cinema {
 
     }
 
-    updateMoviePrice(movieIndex, newPrice) {
+    updateMoviePrice(movieIndex, newTicketPrice) {
 
-        for (let i = 0; i < this.movieList.length; i++) {
-            const movie = this.movieList[i];
-
-            if (i === movieIndex) {
-
-                movie.ticketPrice = newPrice;
-
-                console.log(`You can watch "${movie.movieName} movie for ${newPrice} ${this.currency}, now!`);
-                break;
-            }
-        }
+        this.movieList[movieIndex].ticketPrice = newTicketPrice;
+        const movie = this.movieList[movieIndex].movieName;
+        console.log(`You can watch "${movie} movie for ${newTicketPrice} ${this.currency}, now!`);
 
     }
 
     removeMovie(movieIndex) {
 
-        for (let i = 0; i < this.movieList.length; i++) {
+        this.movieList[movieIndex].available = false;
+        const movie = this.movieList[movieIndex].movieName;
+        console.log(`No more "${movie}" :(`);
 
-            const movie = this.movieList[i];
-
-            if (i === movieIndex) {
-
-                movie.available = false;
-                console.log(`No more "${this.movieList[movieIndex].movieName}" :(`);
-                break;
-            }
-        }
     }
 
 }

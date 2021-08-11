@@ -47,7 +47,6 @@ kauke.sellTickets(2, 1);
 kauke.removeMovie(1);
 // No more "Kaspinelis" :(
 
-// console.log(kauke);
 kauke.sellTickets(1, 4);
 // Sorry, you can no longer buy tickets to movie "Kaspinelis".
 
@@ -70,3 +69,4 @@ kauke.profit();
 //     profit: 38 EUR;
 //     net profit: 18 EUR;
 // ===============
+console.log(kauke);
