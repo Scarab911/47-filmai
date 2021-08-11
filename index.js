@@ -69,4 +69,3 @@ kauke.profit();
 //     profit: 38 EUR;
 //     net profit: 18 EUR;
 // ===============
-console.log(kauke);
